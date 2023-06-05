@@ -15,16 +15,19 @@ from kivy.uix.textinput import TextInput
 class NoteListScreen(Screen):
     def __init__(self, **kwargs):
         super(NoteListScreen, self).__init__(**kwargs)
-        self.layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
 
+        #создание списка заметок
+        self.layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         self.scrollview = ScrollView(size_hint=(1, None), size=(Window.width, Window.height - 50))
         self.scrollview.add_widget(self.layout)
 
-        container = GridLayout(cols=1)
-        container.add_widget(self.scrollview)
-        container.add_widget(Button(text='Создать заметку', size_hint=(1, None), height=50, background_color=(1, 2, 3, 1), on_release=self.go_to_create_note))
+        #создание кнопки 'Создать заметку'
+        self.container = GridLayout(cols=1)
+        self.container.add_widget(self.scrollview)
+        self.container.add_widget(Button(text='Создать заметку', size_hint=(1, None), height=50, background_color=(1, 2, 3, 1), on_release=self.go_to_create_note))
 
-        self.add_widget(container)
+        #добавление кнопки на экран
+        self.add_widget(self.container)
 
         self.load_notes()
 
